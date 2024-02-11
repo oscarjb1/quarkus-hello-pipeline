@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 @Path("/hello")
 public class HelloResource {
 
-    @ConfigProperty(name = "GREET")
+    @ConfigProperty(name = "GREET", defaultValue = "buuu")
     private String greet;
 
     @GET
