@@ -28,7 +28,7 @@ spec:
         deployment: $APP_NAME
     spec:
       containers:
-      - image: $IMAGE_NAME$IMAGE_VERSION
+      - image: $IMAGE_NAME:$IMAGE_VERSION
         name: $APP_NAME
         envFrom:
         - secretRef:
@@ -39,7 +39,7 @@ spec:
         - name: MYSQL_DATABASE
           value: "hello"
         ports:
-        - containerPort: 3306
+        - containerPort: $APP_PORT
           protocol: TCP
         resources: {}
 --- 
@@ -51,10 +51,10 @@ metadata:
   name: mysql
 spec:
   ports:
-  - name: 3306-tcp
-    port: 3306
+  - name: $APP_PORT-tcp
+    port: $APP_PORT
     protocol: TCP
-    targetPort: 3306
+    targetPort: $APP_PORT
   selector:
     deployment: mysql
 --- 
